@@ -1,0 +1,122 @@
+[
+  {
+    "picture": "/img/copenhagen.png",
+    "title": "Copenhagen",
+    "adress": "892-8727 Nullam Avenue,Bikaner,229842",
+    "activated": true,
+    "stats": [
+      {
+        "statLabel": "Habitants",
+        "statValue": 54719
+      },
+      {
+        "statLabel": "Hôtels",
+        "statValue": 52607
+      },
+      {
+        "statLabel": "Revenu Moy",
+        "statValue": 76705
+      },
+      {
+        "statLabel": "m2",
+        "statValue": 72481
+      }
+    ]
+  },
+  {
+    "picture": "/img/tehran.png",
+    "title": "Tehran",
+    "adress": "5906 Dui, Impasse,Castel Baronia,622603",
+    "activated": true,
+    "stats": [
+      {
+        "statLabel": "Habitants",
+        "statValue": 65045
+      },
+      {
+        "statLabel": "Hôtels",
+        "statValue": 78749
+      },
+      {
+        "statLabel": "Revenu Moy",
+        "statValue": 107624
+      },
+      {
+        "statLabel": "m2",
+        "statValue": 101232
+      }
+    ]
+  },
+  {
+    "picture": "/img/astana.png",
+    "title": "Astana",
+    "adress": "892-8727 Nullam Avenue,Bikaner,229842",
+    "activated": true,
+    "stats": [
+      {
+        "statLabel": "Habitants",
+        "statValue": 69047
+      },
+      {
+        "statLabel": "Hôtels",
+        "statValue": 55405
+      },
+      {
+        "statLabel": "Revenu Moy",
+        "statValue": 103062
+      },
+      {
+        "statLabel": "m2",
+        "statValue": 107545
+      }
+    ]
+  },
+  {
+    "picture": "/img/tokyo.png",
+    "title": "Tokyo",
+    "adress": "Appartement 216-7029 Nam Rue,Allein,08013",
+    "activated": true,
+    "stats": [
+      {
+        "statLabel": "Habitants",
+        "statValue": 105359
+      },
+      {
+        "statLabel": "Hôtels",
+        "statValue": 76286
+      },
+      {
+        "statLabel": "Revenu Moy",
+        "statValue": 109988
+      },
+      {
+        "statLabel": "m2",
+        "statValue": 96363
+      }
+    ]
+  },
+  {
+    "picture": "/img/london.jpg",
+    "title": "London",
+    "adress": "6519 Lobortis, Rue,Port Alice,526020",
+    "activated": true,
+    "stats": [
+      {
+        "statLabel": "Habitants",
+        "statValue": 105969
+      },
+      {
+        "statLabel": "Hôtels",
+        "statValue": 67100
+      },
+      {
+        "statLabel": "Revenu Moy",
+        "statValue": 91656
+      },
+      {
+        "statLabel": "m2",
+        "statValue": 98027
+      }
+    ]
+  }
+]
