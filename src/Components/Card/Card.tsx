@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Switch from "@material-ui/core/Switch";
 import "./index.css";
 
 interface CardsProps {
@@ -8,11 +9,22 @@ interface CardsProps {
 const Card: React.FC<CardsProps> = ({
   city: { picture, title, adress, stats, activated },
 }) => {
+  const [checkbox, setCheckbox] = React.useState(false);
+
+  useEffect(() => {
+    if (activated) {
+      setCheckbox(true);
+    }
+  }, []);
+
+  const handleChange = () => {
+    setCheckbox(!checkbox);
+  };
   return (
     <div className="card-container shadow border-1 bg-white border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
       <div>
         <img
-          className="lg:h-48 md:h-36 w-full object-cover object-center"
+          className="h-48 w-full object-cover object-center"
           src={picture}
           alt="city"
         />
@@ -25,10 +37,13 @@ const Card: React.FC<CardsProps> = ({
           <p className="font-sans font-medium text-secondary">{adress}</p>
         </div>
         <div className="flex place-items-center">
-          <label className="switch">
-            <input type="checkbox" defaultChecked={activated} />
-            <span className="slider round"></span>
-          </label>
+          <Switch
+            checked={checkbox}
+            onChange={handleChange}
+            color="primary"
+            name="checkedB"
+            inputProps={{ "aria-label": "primary checkbox" }}
+          />
         </div>
       </div>
       <div className="w-full line-separator" />

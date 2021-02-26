@@ -2,6 +2,9 @@ import React from "react";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import "./index.css";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 Modal.setAppElement("#modal");
 
@@ -34,6 +37,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
 
   const { register, handleSubmit, errors } = useForm<FormData>();
   const isErrors = Object.keys(errors).length > 0;
+
   return (
     <div>
       <Modal
@@ -54,55 +58,63 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
               X
             </button>
           </div>
-          <input
-            type="text"
-            placeholder="Nom de la ville"
+          <TextField
+            label="Nom de la ville"
             name="cityName"
-            className="form-input w-full"
-            ref={register({ required: true })}
-          />
-          <input
             type="text"
-            placeholder="Adresse"
+            variant="outlined"
+            className="form-input w-full"
+            inputRef={register({ required: true })}
+          />
+          <TextField
+            label="Adresse"
             name="adress"
-            className="form-input w-full"
-            ref={register({ required: true })}
-          />
-          <input
             type="text"
-            placeholder="Lien de l'image"
-            name="picture"
+            variant="outlined"
             className="form-input w-full"
-            ref={register({ required: true })}
+            inputRef={register({ required: true })}
           />
-          <div className="flex place-content-between">
-            <input
-              type="number"
-              placeholder="Habitants"
+          <TextField
+            label="Lien de l'image"
+            name="picture"
+            type="text"
+            variant="outlined"
+            className="form-input w-full"
+            inputRef={register({ required: true })}
+          />
+
+          <div className="flex flex-wrap place-content-around mb-5">
+            <TextField
+              label="Habitants"
               name="people"
-              className="form-input w-1/4 mr-2"
-              ref={register({ required: true })}
+              type="number"
+              variant="outlined"
+              className="w-1/4 form-input"
+              inputRef={register({ required: true })}
             />
-            <input
-              type="text"
-              placeholder="Hotels"
+            <TextField
+              label="Hotels"
               name="hotels"
-              className="form-input w-1/4 mr-2"
-              ref={register({ required: true })}
-            />
-            <input
               type="number"
-              placeholder="Revenu Moy"
+              variant="outlined"
+              className="w-1/4 form-input"
+              inputRef={register({ required: true })}
+            />
+            <TextField
+              label="Revenu Moy"
               name="averageIncome"
-              className="form-input w-1/4 mr-2"
-              ref={register({ required: true })}
-            />
-            <input
               type="number"
-              placeholder="m2"
+              variant="outlined"
+              className="w-1/4 form-input"
+              inputRef={register({ required: true })}
+            />
+            <TextField
+              label="m2"
               name="squareMeter"
-              className="form-input w-1/4 mr-2"
-              ref={register({ required: true })}
+              type="number"
+              variant="outlined"
+              className="w-1/5 form-input"
+              inputRef={register({ required: true })}
             />
           </div>
           <div>
@@ -114,13 +126,14 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
           </div>
           <div className="flex place-content-between place-items-center h-1/5">
             <div>
-              <input
-                type="checkbox"
-                className="h-4 w-6 border rounded-md checked:bg-green-600 checked:border-transparent mr-2"
+              <FormControlLabel
+                value="start"
+                control={<Checkbox name="activated" color="primary" />}
+                label="Activer"
                 name="activated"
+                labelPlacement="end"
                 ref={register({ required: true })}
               />
-              Activer
             </div>
             <button type="submit" className="p-2 w-1/4 button">
               + AJOUTER

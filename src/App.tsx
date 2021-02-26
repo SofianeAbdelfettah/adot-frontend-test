@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Components/Card";
 import ModalWrapper from "./Components/ModalWrapper";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#3fd48b",
+    },
+  },
+});
 
 const App = () => {
   const [cities, setCities] = useState<CityInfo[]>([]);
@@ -19,26 +28,28 @@ const App = () => {
 
   return (
     <div className="bg-gray-100 w-full h-screen">
-      <div className="flex flex-col justify-center items-center">
-        <div className="w-11/12 pt-10 pb-10 pl-2 flex place-content-between">
-          <h1 className="font-title title">Destinations</h1>
-          <div>
-            <div onClick={() => toggleModal()}>
-              <button className="button font-sans">+ AJOUTER</button>
+      <ThemeProvider theme={theme}>
+        <div className="container px-5 py-24 mx-auto">
+          <div className="w-11/12 pt-10 pb-20 flex place-content-between">
+            <h1 className="font-title title">Destinations</h1>
+            <div>
+              <div onClick={() => toggleModal()}>
+                <button className="button font-sans">+ AJOUTER</button>
+              </div>
+              <ModalWrapper
+                isOpen={modal}
+                toggleModal={toggleModal}
+                citiesSetter={citiesSetter}
+              />
             </div>
-            <ModalWrapper
-              isOpen={modal}
-              toggleModal={toggleModal}
-              citiesSetter={citiesSetter}
-            />
+          </div>
+          <div className="flex flex-wrap -mx-4 -my-8 gap-8">
+            {cities.map((city, index) => (
+              <Card key={index} city={city} />
+            ))}
           </div>
         </div>
-        <div className="w-11/12 grid md:grid-cols-3 auto-cols-fr gap-5 ">
-          {cities.map((city, index) => (
-            <Card key={index} city={city} />
-          ))}
-        </div>
-      </div>
+      </ThemeProvider>
     </div>
   );
 };
