@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import Switch from "@material-ui/core/Switch";
 import "./index.css";
 
@@ -9,13 +9,7 @@ interface CardsProps {
 const Card: React.FC<CardsProps> = ({
   city: { picture, title, adress, stats, activated },
 }) => {
-  const [checkbox, setCheckbox] = React.useState(false);
-
-  useEffect(() => {
-    if (activated) {
-      setCheckbox(true);
-    }
-  }, []);
+  const [checkbox, setCheckbox] = useState(activated);
 
   const handleChange = () => {
     setCheckbox(!checkbox);
