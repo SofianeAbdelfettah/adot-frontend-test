@@ -10,7 +10,6 @@ dependencies:
   react-hook-form: 6.15.4_react@17.0.1
   react-modal: 3.12.1_react-dom@17.0.1+react@17.0.1
   react-scripts: 4.0.3_react@17.0.1+typescript@4.1.5
-  swr: 0.4.2_react@17.0.1
   typescript: 4.1.5
   web-vitals: 1.1.0
 devDependencies:
@@ -4546,12 +4545,6 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
-  /dequal/2.0.2:
-    dev: false
-    engines:
-      node: '>=6'
-    resolution:
-      integrity: sha512-q9K8BlJVxK7hQYqa6XISGmBZbtQQWVXSrRrWreHC94rMt1QL/Impruc+7p2CYSYuVIUr+YCt6hjrs1kkdJRTug==
   /des.js/1.0.1:
     dependencies:
       inherits: 2.0.4
@@ -11500,15 +11493,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-yhy/sQYxR5BkC98CY7o31VGsg014AKLEPxdfhora76l36hD9Rdy5NZA/Ocn6yayNPgSamYdtX2rFJdcv07AYVw==
-  /swr/0.4.2_react@17.0.1:
-    dependencies:
-      dequal: 2.0.2
-      react: 17.0.1
-    dev: false
-    peerDependencies:
-      react: ^16.11.0 || ^17.0.0
-    resolution:
-      integrity: sha512-SKGxcAfyijj/lE5ja5zVMDqJNudASH3WZPRUakDVOePTM18FnsXgugndjl9BSRwj+jokFCulMDe7F2pQL+VhEw==
   /symbol-observable/1.2.0:
     dev: false
     engines:
@@ -12718,7 +12702,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.11.4
   '@testing-library/react': ^11.1.0
   '@testing-library/user-event': ^12.1.10
-  '@types/jest': ^26.0.15
+  '@types/jest': ^26.0.20
   '@types/node': ^12.0.0
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
@@ -12731,7 +12715,6 @@ specifiers:
   react-hook-form: ^6.15.4
   react-modal: ^3.12.1
   react-scripts: 4.0.3
-  swr: ^0.4.2
   tailwindcss: npm:@tailwindcss/postcss7-compat@^2.0.3
   typescript: ^4.1.2
   web-vitals: ^1.0.1

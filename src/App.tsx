@@ -1,26 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Card from "./Components/Card";
 import ModalWrapper from "./Components/ModalWrapper";
+import { AppContext } from "./Components/Context";
+import { addCities, addCity } from "./Store/Action";
+import { useLocalStorage } from "./Hooks/UseLocalStorage";
 import axios from "axios";
-import useSWR from "swr";
 
 const App = () => {
-  const [cities, setCities] = useState<CityInfo[]>([]);
   const [modal, setModalToggle] = useState<boolean>(false);
+  const { state, dispatch } = useContext(AppContext);
+  const [localStorage, setlocalStorage] = useLocalStorage("cities");
 
   const fetcher = (url: string) =>
     axios.get(url).then((res) => {
-      setCities(res.data as CityInfo[]);
+      addCities(dispatch, res.data as CityInfo[]);
+      setlocalStorage(res.data);
       return res.data;
     });
 
-  const { data, error } = useSWR("/cities.json", fetcher);
+  useEffect(() => {
+    if (localStorage?.length === 0) {
+      fetcher("/cities.json");
+    } else {
+      addCities(dispatch, localStorage);
+    }
+  }, []);
 
   const toggleModal = () => setModalToggle(!modal);
-  const citiesSetter = (formData: CityInfo) => setCities([...cities, formData]);
 
-  if (error) return <div>failed to load</div>;
-  if (!cities) return <div>loading...</div>;
+  const onClose = (data: CityInfo) => {
+    addCity(dispatch, data);
+    setlocalStorage([...localStorage, data]);
+  };
+
+  if (!state) return <div>loading...</div>;
 
   return (
     <div className="bg-gray-100 w-full h-screen">
@@ -34,12 +47,12 @@ const App = () => {
             <ModalWrapper
               isOpen={modal}
               toggleModal={toggleModal}
-              citiesSetter={citiesSetter}
+              onClose={onClose}
             />
           </div>
         </div>
         <div className="flex flex-wrap -mx-4 -my-8 gap-8">
-          {cities.map((city, index) => (
+          {state.cityInfo.map((city: CityInfo, index: number) => (
             <Card key={index} city={city} />
           ))}
         </div>

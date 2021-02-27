@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import "./index.css";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
 Modal.setAppElement("#modal");
@@ -11,20 +10,26 @@ Modal.setAppElement("#modal");
 interface ModalWrapperProps {
   isOpen: boolean;
   toggleModal: () => void;
-  citiesSetter: (formData: CityInfo) => void;
+  onClose: (formData: CityInfo) => void;
 }
 
 const ModalWrapper: React.FC<ModalWrapperProps> = ({
   isOpen,
   toggleModal,
-  citiesSetter,
+  onClose,
 }) => {
-  const onsubmit = (data: FormData) => {
-    citiesSetter({
+  const [checked, setChecked] = useState(true);
+
+  const handleChange = (event: any) => {
+    setChecked(event.target.checked);
+  };
+
+  const onsubmit = (data: CityForm) => {
+    onClose({
       picture: data.picture,
       title: data.cityName,
       adress: data.adress,
-      activated: data.activated,
+      activated: checked,
       stats: [
         { statLabel: "Habitants", statValue: data.people },
         { statLabel: "Hôtels", statValue: data.hotels },
@@ -35,7 +40,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
     toggleModal();
   };
 
-  const { register, handleSubmit, errors } = useForm<FormData>();
+  const { register, handleSubmit, errors } = useForm<CityForm>();
   const isErrors = Object.keys(errors).length > 0;
 
   return (
@@ -44,7 +49,8 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
         isOpen={isOpen}
         contentLabel="Example Modal"
         className="modal-container focus:outline-none"
-        onRequestClose={() => toggleModal()}
+        shouldCloseOnOverlayClick
+        onRequestClose={toggleModal}
       >
         <form onSubmit={handleSubmit(onsubmit)}>
           <div className="flex place-content-between mb-5">
@@ -69,6 +75,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
           <TextField
             label="Adresse"
             name="adress"
+            autoFocus
             type="text"
             variant="outlined"
             className="form-input w-full"
@@ -126,14 +133,13 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
           </div>
           <div className="flex place-content-between place-items-center h-1/5">
             <div>
-              <FormControlLabel
+              <Checkbox
                 value="start"
-                control={<Checkbox name="activated" color="primary" />}
-                label="Activer"
-                name="activated"
-                labelPlacement="end"
-                ref={register({ required: true })}
+                color="primary"
+                checked={checked}
+                onChange={handleChange}
               />
+              Activer
             </div>
             <button type="submit" className="p-2 w-1/4 button">
               + AJOUTER

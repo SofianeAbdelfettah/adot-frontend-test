@@ -11,7 +11,7 @@ interface CityStats {
   statValue: number;
 }
 
-interface FormData {
+interface CityForm {
   activated: boolean;
   picture: string;
   cityName: string;
@@ -21,3 +21,7 @@ interface FormData {
   averageIncome: number;
   squareMeter: number;
 }
+
+type InitialStateType = {
+  cityInfo: CityInfo[];
+};
