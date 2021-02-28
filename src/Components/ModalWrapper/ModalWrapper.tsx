@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import Modal from "react-modal";
-import { useForm } from "react-hook-form";
-import "./index.css";
-import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
+import React, { useState } from 'react'
+import Modal from 'react-modal'
+import { useForm } from 'react-hook-form'
+import './index.css'
+import TextField from '@material-ui/core/TextField'
+import Checkbox from '@material-ui/core/Checkbox'
 
-Modal.setAppElement("#modal");
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#modal')
 
 interface ModalWrapperProps {
-  isOpen: boolean;
-  toggleModal: () => void;
-  onClose: (formData: CityInfo) => void;
+  isOpen: boolean
+  toggleModal: () => void
+  onClose: (formData: ICityInfo) => void
 }
 
 const ModalWrapper: React.FC<ModalWrapperProps> = ({
@@ -18,36 +18,35 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
   toggleModal,
   onClose,
 }) => {
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(true)
 
   const handleChange = (event: any) => {
-    setChecked(event.target.checked);
-  };
+    setChecked(event.target.checked)
+  }
 
-  const onsubmit = (data: CityForm) => {
+  const onsubmit = (data: ICityForm) => {
     onClose({
       picture: data.picture,
       title: data.cityName,
       adress: data.adress,
       activated: checked,
       stats: [
-        { statLabel: "Habitants", statValue: data.people },
-        { statLabel: "Hôtels", statValue: data.hotels },
-        { statLabel: "Revenu Moy", statValue: data.averageIncome },
-        { statLabel: "m2", statValue: data.squareMeter },
+        { statLabel: 'Habitants', statValue: data.people },
+        { statLabel: 'Hôtels', statValue: data.hotels },
+        { statLabel: 'Revenu Moy', statValue: data.averageIncome },
+        { statLabel: 'm2', statValue: data.squareMeter },
       ],
-    });
-    toggleModal();
-  };
+    })
+    toggleModal()
+  }
 
-  const { register, handleSubmit, errors } = useForm<CityForm>();
-  const isErrors = Object.keys(errors).length > 0;
+  const { register, handleSubmit, errors } = useForm<ICityForm>()
+  const isErrors = Object.keys(errors).length > 0
 
   return (
     <div>
       <Modal
         isOpen={isOpen}
-        contentLabel="Example Modal"
         className="modal-container focus:outline-none"
         shouldCloseOnOverlayClick
         onRequestClose={toggleModal}
@@ -59,6 +58,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
             </h1>
             <button
               onClick={() => toggleModal()}
+              data-testid="closeModalBtn"
               className=" focus:outline-none p-1"
             >
               X
@@ -126,7 +126,10 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
           </div>
           <div>
             {isErrors && (
-              <span className="bg-red-400 p-2 text-white rounded">
+              <span
+                data-testid="errorsField"
+                className="bg-red-400 p-2 text-white rounded"
+              >
                 Tous les champs sont requis pour poursuivre
               </span>
             )}
@@ -141,14 +144,18 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
               />
               Activer
             </div>
-            <button type="submit" className="p-2 w-1/4 button">
+            <button
+              data-testid="validationBtn"
+              type="submit"
+              className="p-2 w-1/4 button"
+            >
               + AJOUTER
             </button>
           </div>
         </form>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default ModalWrapper;
+export default ModalWrapper

@@ -1,19 +1,17 @@
-import React, { useState } from "react";
-import Switch from "@material-ui/core/Switch";
-import "./index.css";
+import React, { useState } from 'react'
+import Switch from '@material-ui/core/Switch'
+import './index.css'
 
 interface CardsProps {
-  city: CityInfo;
+  city: ICityInfo
 }
 
 const Card: React.FC<CardsProps> = ({
   city: { picture, title, adress, stats, activated },
 }) => {
-  const [checkbox, setCheckbox] = useState(activated);
+  const [checkbox, setCheckbox] = useState(activated)
+  const handleChange = () => setCheckbox(!checkbox)
 
-  const handleChange = () => {
-    setCheckbox(!checkbox);
-  };
   return (
     <div className="card-container shadow border-1 bg-white border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
       <div>
@@ -36,7 +34,7 @@ const Card: React.FC<CardsProps> = ({
             onChange={handleChange}
             color="primary"
             name="checkedB"
-            inputProps={{ "aria-label": "primary checkbox" }}
+            inputProps={{ 'aria-label': 'primary checkbox' }}
           />
         </div>
       </div>
@@ -54,7 +52,7 @@ const Card: React.FC<CardsProps> = ({
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card
