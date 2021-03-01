@@ -33,7 +33,7 @@ const Card: React.FC<CardsProps> = ({
             checked={checkbox}
             onChange={handleChange}
             color="primary"
-            name="checkedB"
+            name="checkbox"
             inputProps={{ 'aria-label': 'primary checkbox' }}
           />
         </div>

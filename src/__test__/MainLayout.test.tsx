@@ -16,11 +16,25 @@ test('Open the modal', async () => {
   expect(screen.getByTestId('closeModalBtn')).toHaveTextContent('X')
 })
 
-test('Errors are displayed correctly', async () => {
-  render(<MainLayout />)
+test('Close the modal', async () => {
+  const { queryByTestId } = render(<MainLayout />)
 
   const openModalbutton = screen.getByTestId('toggleModalBtn')
   fireEvent.click(openModalbutton)
+
+  await waitFor(() => expect(screen.getByTestId('closeModalBtn').click()))
+
+  expect(queryByTestId('closeModalBtn')).toBeNull()
+})
+
+test('Errors are displayed correctly', async () => {
+  const { queryByTestId } = render(<MainLayout />)
+
+  const openModalbutton = screen.getByTestId('toggleModalBtn')
+  fireEvent.click(openModalbutton)
+
+  // test that the error doesnt appear for no reason
+  expect(queryByTestId('errorsField')).toBeNull()
 
   const validateFormButton = screen.getByTestId('validationBtn')
   fireEvent.click(validateFormButton)
