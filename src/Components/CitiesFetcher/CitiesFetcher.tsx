@@ -23,7 +23,8 @@ const CitiesFetcher: React.FC = ({ children }) => {
     }
   }, [dispatch, localStorage, setlocalStorage])
 
-  if (!state) return <div className="m-5 bg-red-300">Error</div>
+  if (state?.cityInfo.length === 0)
+    return <div className="m-5 bg-red-300">Error</div>
 
   return <>{children}</>
 }

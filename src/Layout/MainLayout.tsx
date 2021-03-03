@@ -18,7 +18,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="bg-gray-100 w-full h-screen">
+    <div className="bg-gray-100 w-full sm:h-full h-screen">
       <div className="container px-5 py-24 mx-auto">
         <div className="w-11/12 pt-10 pb-20 flex place-content-between">
           <h1 className="font-title title">Destinations</h1>

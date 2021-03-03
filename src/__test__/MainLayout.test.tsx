@@ -1,7 +1,6 @@
 import React from 'react'
 import MainLayout from '../Layout/MainLayout'
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
 import { test, expect } from '@jest/globals'
 import Modal from 'react-modal'
 

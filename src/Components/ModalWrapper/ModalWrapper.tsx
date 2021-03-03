@@ -24,7 +24,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
     setChecked(event.target.checked)
   }
 
-  const onsubmit = (data: ICityForm) => {
+  const onSubmit = (data: ICityForm) => {
     onClose({
       picture: data.picture,
       title: data.cityName,
@@ -51,7 +51,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
         shouldCloseOnOverlayClick
         onRequestClose={toggleModal}
       >
-        <form onSubmit={handleSubmit(onsubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex place-content-between mb-5">
             <h1 className="font-title modal-title font-bold">
               Ajouter une destination

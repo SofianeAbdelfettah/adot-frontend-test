@@ -19,8 +19,12 @@ export const cityReducer: React.Reducer<
 > = (state: InitialStateType, action) => {
   switch (action.type) {
     case ACTION_TYPE.ADD_ALL:
+      const UniqCities = new Set([
+        ...state.cityInfo,
+        ...(action.payload as ICityInfo[]),
+      ])
       return {
-        cityInfo: [...state.cityInfo, ...(action.payload as ICityInfo[])],
+        cityInfo: [...UniqCities],
       }
     case ACTION_TYPE.ADD_CITY:
       const data = action.payload as ICityInfo
